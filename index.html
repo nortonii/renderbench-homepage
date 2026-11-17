@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RenderBench: Benchmarking Render-to-Real Video Transfer with Editable Scene Reconstructions</title>
+  <meta name="description" content="RenderBench: The first editable, multi-granularity render-to-real video transfer benchmark across 26 3D scene packages, 61 views, 138 real windows, 3 rendering engines, and 99,360 proxy video exports." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Sticky Top Command Bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#" class="brand">
+        <span class="brand-cube">RB</span>
+        <span>RenderBench</span>
+        <span class="venue-pill">CVPR 2027</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#interactive-mall">3D Scene Lab</a>
+        <a href="#engine-granularity">3-Engine Studio</a>
+        <a href="#video-theater">Video Theater</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#diagnostics">3D Diagnostics</a>
+        <a href="#architecture">Pipeline &amp; Gallery</a>
+        <a href="#citation">BibTeX</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span>Editable Dynamic 3D Scenes</span>
+        <span>·</span>
+        <span>Three.js / Eevee / Cycles</span>
+        <span>·</span>
+        <span>Counterfactual 3D Motion Audits</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="gradient-text">RenderBench</span>: Benchmarking Render-to-Real Video Transfer with Editable Scene Reconstructions
+      </h1>
+
+      <p class="hero-subtitle">
+        Existing conditional video benchmarks rely on passive 2D controls extracted from target footage, making it impossible to diagnose how upstream 3D rendering fidelity, materials, illumination, or trajectories shape generation. <strong>RenderBench</strong> pairs 138 real-world video windows with human-verified, editable dynamic 3D scenes across three rendering engines—unlocking controlled appearance, lighting, and counterfactual 3D motion interventions at scale.
+      </p>
+
+      <!-- Anonymous Submission Block -->
+      <div id="anonymousBlock" class="authors-box">
+        <div class="author-list">
+          <span class="author-item">Anonymous CVPR 2027 Submission</span>
+        </div>
+        <div class="affil-list">
+          <span>Double-Blind Review Preview · All Author &amp; Institutional Identifiers Hidden</span>
+        </div>
+      </div>
+
+      <!-- Primary CTA Row -->
+      <div class="cta-row">
+        <a href="#architecture" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span>Paper &amp; Figures</span>
+        </a>
+        <a href="#video-theater" class="btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span>1080p Synced Videos</span>
+        </a>
+        <a href="#interactive-mall" class="btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>Interactive 3D Split-View</span>
+        </a>
+        <a href="#leaderboard" class="btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Live Leaderboard</span>
+        </a>
+        <a href="#citation" class="btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+          <span>BibTeX</span>
+        </a>
+      </div>
+
+      <!-- 6-Stat Telemetry Ribbon -->
+      <div class="stats-ribbon">
+        <div class="stat-card">
+          <div class="stat-value">26 / 61</div>
+          <div class="stat-label">3D Scene Pkgs / Views</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">138</div>
+          <div class="stat-label">5s Real Video Windows</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">3 Engines</div>
+          <div class="stat-label">Three.js · Eevee · Cycles</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">33,120</div>
+          <div class="stat-label">Window–Condition Pairs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">99,360</div>
+          <div class="stat-label">Proxy Video Exports</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">1.32M</div>
+          <div class="stat-label">Lossless Eval Frames</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Interactive Multi-View 3D Mall & Split-Curtain Comparator -->
+    <section id="interactive-mall" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Interactive Multi-View Scene Explorer</div>
+          <h2 class="section-title">Click Any Camera in the Shared 3D Mall · Drag to Compare</h2>
+          <p class="section-desc">
+            Eight calibrated camera trajectories (<strong>Views A–H</strong>) observe a single unified, human-reviewed 3D shopping mall reconstruction. Select any camera marker on the 3D map to inspect how four video generative models transform the synthetic 3D proxy into photorealistic video.
+          </p>
+        </div>
+      </div>
+
+      <div class="studio-grid">
+        <!-- Left: 3D Bird's-Eye Mall Map with Calibrated Camera Pins -->
+        <div class="glass-panel mall-map-card">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px;">
+              <span style="font-weight:700;font-size:0.92rem;">Shared 3D Mall Environment (Cameras A–H)</span>
+              <button id="autoTourBtn" class="seg-btn" style="font-size:0.74rem;padding:4px 10px;">▶ Auto-Tour A–H</button>
+            </div>
+            <div id="mallMapStage" class="map-stage">
+              <img src="assets/mall/mall_map.webp" alt="Reconstructed 3D shopping mall with camera markers A through H" />
+              <!-- Pins injected at exact calibrated UV anchors by app.js -->
+            </div>
+          </div>
+
+          <div id="camTelemetryBox" class="insight-callout" style="background:rgba(15,23,42,0.75);border-left-color:var(--amber);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <strong id="activeCamCoords" style="color:#fde68a;">Cam A · Escalator</strong>
+              <span id="activeCamWorld" class="mono" style="font-size:0.74rem;color:var(--cyan);">xyz = (-42.3, -3.0, 4.2)</span>
+            </div>
+            <div id="activeCamDesc" style="font-size:0.79rem;color:var(--text-1);">
+              Sweeping atrium view with moving escalator riders &amp; warm storefront glow. Shared 3D geometry &amp; actor trajectories across all 8 views.
+            </div>
+          </div>
+
+          <div>
+            <div class="layer-tag" style="margin-bottom:8px;">Quick Camera Jump</div>
+            <div id="viewPills" class="view-pills"></div>
+          </div>
+        </div>
+
+        <!-- Right: Hardware-Accelerated Drag Split-Curtain -->
+        <div class="glass-panel curtain-card">
+          <div class="curtain-toolbar">
+            <div class="layer-group">
+              <span class="layer-tag">Left:</span>
+              <button class="seg-btn active" data-left="Proxy">3D Proxy (Eevee R0)</button>
+              <button class="seg-btn" data-left="GT">Real Target (GT)</button>
+            </div>
+            <div class="layer-group">
+              <span class="layer-tag">Right:</span>
+              <button class="seg-btn active-right" data-right="Seedance">Seedance 2.5</button>
+              <button class="seg-btn" data-right="H3">MiniMax H3</button>
+              <button class="seg-btn" data-right="Wan">Wan2.2-VACE</button>
+              <button class="seg-btn" data-right="Cosmos">Cosmos-2.5</button>
+              <button class="seg-btn" data-right="GT">Real GT</button>
+            </div>
+          </div>
+
+          <div id="mainCurtain" class="curtain-viewport">
+            <img id="curtainRightImg" src="assets/mall/A_Seedance_2s.webp" alt="Right comparison stream" />
+            <div id="curtainLeftWrap" class="curtain-left-wrap">
+              <img id="curtainLeftImg" src="assets/mall/A_Proxy_2s.webp" alt="Left comparison stream" />
+            </div>
+            <div id="curtainDivider" class="curtain-divider"></div>
+            <div id="curtainHandle" class="curtain-handle">⇄</div>
+            <div id="badgeLeft" class="badge-overlay badge-left">3D Proxy (Eevee R0)</div>
+            <div id="badgeRight" class="badge-overlay badge-right">Seedance 2.5</div>
+          </div>
+
+          <div class="time-bar">
+            <span id="curtainCaption">Drag the slider horizontally to inspect structural alignment vs. color and illumination synthesis at <code>t = 2.0s</code> (held-out frame; <code>t = 0s</code> reference excluded from scoring).</span>
+            <div id="viewDTimeControls" style="display:none;gap:6px;align-items:center;flex-shrink:0;">
+              <span class="layer-tag">Timestamp:</span>
+              <button class="seg-btn" data-time="0s">0.0s</button>
+              <button class="seg-btn active" data-time="2s">2.0s</button>
+              <button class="seg-btn" data-time="4s">4.0s</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Cross-Engine Granularity Studio -->
+    <section id="engine-granularity" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Multi-Granularity Rendering Intervention</div>
+          <h2 class="section-title">Same 3D Scene &amp; Camera · Three Rendering Engines</h2>
+          <p class="section-desc">
+            Holding 3D geometry, camera trajectory, animation, prompt P6, and the <code>t = 0s</code> reference frame strictly fixed, RenderBench exports aligned proxy streams from <strong>Three.js (WebGL Raster)</strong>, <strong>Blender Eevee (Real-Time PBR)</strong>, and <strong>Blender Cycles (Path-Traced GI)</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <div class="engine-tabs" id="engineTabs">
+          <button class="engine-tab active" data-engine="threejs">
+            <div class="engine-tab-title">
+              <span>G1 · Three.js (WebGL Raster)</span>
+              <span class="venue-pill">Coarse</span>
+            </div>
+            <div class="engine-tab-sub">Unshadowed WebGL area lights; clean geometric silhouettes without competing specular cues.</div>
+          </button>
+          <button class="engine-tab" data-engine="eevee">
+            <div class="engine-tab-title">
+              <span>G2 · Blender Eevee (Real-Time PBR)</span>
+              <span class="venue-pill">Medium · Main</span>
+            </div>
+            <div class="engine-tab-sub">Screen-space reflections, soft raster shadows, and real-time PBR material response.</div>
+          </button>
+          <button class="engine-tab" data-engine="cycles">
+            <div class="engine-tab-title">
+              <span>G3 · Blender Cycles (Path-Traced GI)</span>
+              <span class="venue-pill">Fine · GI</span>
+            </div>
+            <div class="engine-tab-sub">Multi-bounce global illumination, ray-traced reflections, and physically accurate penumbrae.</div>
+          </button>
+        </div>
+
+        <div class="engine-showcase">
+          <div class="frame-box">
+            <div class="frame-box-head">
+              <span id="engProxyLabel" style="color:var(--cyan);">Upstream Proxy · Three.js</span>
+              <span class="mono" style="font-size:0.74rem;color:var(--text-2);">View D · t = 2.0s</span>
+            </div>
+            <img id="engProxyImg" src="assets/mall/D_threejs_2s.webp" alt="Engine proxy frame" />
+            <div id="engProxySpec" style="padding:11px 14px;font-size:0.78rem;color:var(--text-2);margin-top:auto;border-top:1px solid var(--border);">
+              Identical 3D mesh &amp; camera trajectory; unshadowed WebGL raster transport without ray-traced bounce light.
+            </div>
+          </div>
+
+          <div class="frame-box">
+            <div class="frame-box-head">
+              <span id="engGenLabel" style="color:#fde68a;">Seedance 2.5 Output (Drag vs. Real GT)</span>
+              <span class="mono" style="font-size:0.74rem;color:var(--text-2);">R0 / P6</span>
+            </div>
+            <div id="engineCurtain" class="curtain-viewport" style="border:none;border-radius:0;">
+              <img id="engGenImg" src="assets/mall/D_Seedance_threejs_2s.webp" alt="Seedance output for selected engine" />
+              <div id="engCurtainLeft" class="curtain-left-wrap" style="clip-path:inset(0 68% 0 0);">
+                <img src="assets/mall/D_GT_2s.webp" alt="Real target ground truth View D" />
+              </div>
+              <div id="engDivider" class="curtain-divider" style="left:32%;"></div>
+              <div id="engHandle" class="curtain-handle" style="left:32%;width:32px;height:32px;font-size:0.75rem;">⇄</div>
+              <div class="badge-overlay badge-left" style="font-size:0.68rem;">Real GT</div>
+              <div id="engBadgeRight" class="badge-overlay badge-right" style="font-size:0.68rem;">Three.js → Seedance</div>
+            </div>
+            <div style="padding:11px 14px;font-size:0.78rem;color:var(--text-2);margin-top:auto;border-top:1px solid var(--border);">
+              Drag the split handle above to compare Real Target footage (left) against Seedance 2.5 transfer (right).
+            </div>
+          </div>
+
+          <div class="engine-metrics-box">
+            <div>
+              <div style="font-weight:700;font-size:0.88rem;margin-bottom:8px;" id="engTableTitle">20-Window Matched Cross-Engine Scores (Three.js)</div>
+              <table class="mini-table">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>LPIPS↓</th>
+                    <th>ΔE₀₀↓</th>
+                    <th>Edge F1↑</th>
+                  </tr>
+                </thead>
+                <tbody id="engTableBody"></tbody>
+              </table>
+            </div>
+            <div id="engInsight" class="insight-callout"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Synchronized 1080p Video Cinema Theater -->
+    <section id="video-theater" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Time-Synchronized 1080p Demonstrations</div>
+          <h2 class="section-title">Frame-Registered Benchmark Video Theater</h2>
+          <p class="section-desc">
+            Still frames cannot reveal temporal flicker, finger articulation, or camera-pan lag. Watch full 24 fps synchronized streams compiled directly from hash-verified benchmark records (<code>t = 0s</code> conditioning frame excluded from scored motion).
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <div class="video-tabs" id="videoTabs">
+          <button class="engine-tab active" data-video="demo1">
+            <div class="engine-tab-title">
+              <span>Demo 1 · Cross-Scene Main Evaluation</span>
+              <span class="venue-pill">6 Scenes × 6 Streams</span>
+            </div>
+            <div class="engine-tab-sub">Loader, Mall View A, Sculpture Hall, Film Corridor, Atlas Robot &amp; Street Crosswalk.</div>
+          </button>
+          <button class="engine-tab" data-video="demo2">
+            <div class="engine-tab-title">
+              <span>Demo 2 · Three-Engine Granularity</span>
+              <span class="venue-pill">Three.js · Eevee · Cycles</span>
+            </div>
+            <div class="engine-tab-sub">Side-by-side upstream proxy renders and Seedance 2.5 transfers on Mall Views A &amp; D.</div>
+          </button>
+          <button class="engine-tab" data-video="demo3">
+            <div class="engine-tab-title">
+              <span>Demo 3 · Shared 3D Mall (6 Views)</span>
+              <span class="venue-pill">Multi-View Consistency</span>
+            </div>
+            <div class="engine-tab-sub">Simultaneous camera trajectories across Views A, C, D, E, F, and H in one 3D scene.</div>
+          </button>
+        </div>
+
+        <div class="video-stage">
+          <video id="benchmarkVideo" controls playsinline preload="metadata" src="assets/videos/demo1_cross_scene_main_evaluation.mp4"></video>
+        </div>
+
+        <div class="chapter-bar">
+          <div id="videoChapters" class="chapter-pills">
+            <span class="layer-tag" style="align-self:center;">Jump to Scene:</span>
+            <button class="seg-btn active" data-seek="0">01 · Loader (0:00)</button>
+            <button class="seg-btn" data-seek="5.0">02 · Mall View A (0:05)</button>
+            <button class="seg-btn" data-seek="10.0">03 · Sculpture Hall (0:10)</button>
+            <button class="seg-btn" data-seek="15.0">04 · Film Corridor (0:15)</button>
+            <button class="seg-btn" data-seek="20.0">05 · Atlas Robot (0:20)</button>
+            <button class="seg-btn" data-seek="24.8">06 · Street (0:25)</button>
+          </div>
+          <div class="layer-group">
+            <span class="layer-tag">Speed:</span>
+            <button class="seg-btn" data-rate="0.5">0.5×</button>
+            <button class="seg-btn active" data-rate="1">1.0×</button>
+            <button class="seg-btn" data-rate="1.5">1.5×</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Quantitative Leaderboard, Polygon Radar & Human/VLM Elo -->
+    <section id="leaderboard" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">138-Window Evaluation &amp; Preference Alignment</div>
+          <h2 class="section-title">Boundary–Color Decoupling &amp; The Aggregation Weighting Paradox</h2>
+          <p class="section-desc">
+            Evaluating 138 five-second windows across 15 source groups exposes a fundamental trade-off: <strong>MiniMax H3</strong> leads structural boundary alignment (<code>0.506</code> Edge F1), while <strong>Seedance 2.5</strong> achieves superior color fidelity (<code>9.470</code> ΔE₀₀)—and naive equal-window averaging reverses their color gap due to tabletop manipulation dominance (62.3% of windows).
+          </p>
+        </div>
+      </div>
+
+      <div class="quant-grid">
+        <!-- Interactive 6-Axis Polygon Radar -->
+        <div class="glass-panel radar-wrap">
+          <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-weight:700;font-size:0.95rem;">6-Axis Normalized Agreement Profile</span>
+            <span class="mono" style="font-size:0.74rem;color:var(--text-2);">Outer Ring = Higher Fidelity</span>
+          </div>
+          <svg id="radarSvg" viewBox="0 0 380 340" style="width:100%;max-width:370px;overflow:visible;"></svg>
+          <div id="radarLegend" class="radar-legend"></div>
+        </div>
+
+        <!-- Sortable Leaderboard with Live Aggregation Toggle -->
+        <div class="glass-panel">
+          <div class="weight-switch-bar">
+            <div>
+              <div style="font-weight:700;font-size:0.9rem;">Aggregation Protocol (Eevee / R0 / P6 · 138 Windows)</div>
+              <div style="font-size:0.77rem;color:var(--text-2);">Click any column header to sort · Toggle weighting scheme to inspect rank reversal</div>
+            </div>
+            <div class="layer-group" id="weightToggle">
+              <button class="seg-btn active" data-weight="group">Equal Source-Group (15 Groups)</button>
+              <button class="seg-btn" data-weight="window">Equal Window (138 Windows)</button>
+            </div>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table class="leaderboard-table" id="mainLeaderboard">
+              <thead>
+                <tr>
+                  <th data-sort="name">Model / Reference Baseline</th>
+                  <th data-sort="lpips_gt">LPIPS ↓</th>
+                  <th data-sort="ms_ssim_gt">MS-SSIM ↑</th>
+                  <th data-sort="delta_e_2000_gt">ΔE₀₀ ↓</th>
+                  <th data-sort="edge_f1_gt">Edge F1 ↑</th>
+                  <th data-sort="depth_si_rmse">CLD ↓</th>
+                  <th data-sort="instance_miou">Inst. mIoU ↑</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardBody"></tbody>
+            </table>
+          </div>
+
+          <div id="paradoxBanner" class="paradox-banner"></div>
+        </div>
+      </div>
+
+      <!-- Dual Panel: Human/VLM Elo + Metric-Human Concordance -->
+      <div class="dual-grid">
+        <div class="glass-panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+            <div>
+              <div style="font-weight:700;font-size:0.96rem;">Human &amp; Calibrated VLM Overall Davidson Elo</div>
+              <div style="font-size:0.78rem;color:var(--text-2);">Reported strictly separately without pooling votes (95% bootstrap CI)</div>
+            </div>
+            <div class="layer-group" id="eloPoolTabs">
+              <button class="seg-btn active" data-elo="human_amended">Human 20w (QC ≥2/4)</button>
+              <button class="seg-btn" data-elo="human_strict">Human 20w (QC ≥3/4)</button>
+              <button class="seg-btn" data-elo="vlm_heldout">Qwen3.8 VLM (118w Held-Out)</button>
+            </div>
+          </div>
+          <div id="eloBars"></div>
+          <div class="insight-callout" style="margin-top:12px;">
+            <strong>Why H3 &amp; Seedance tie in overall preference:</strong> Human raters and calibrated Qwen3.8-Flash (85.8% overall / 91.2% directional agreement on the 20 human windows) reward both H3's crisp structural boundaries and Seedance 2.5's superior color &amp; motion realism.
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <div style="font-weight:700;font-size:0.96rem;margin-bottom:4px;">Which Automatic Metrics Predict Perceived Quality?</div>
+          <div style="font-size:0.78rem;color:var(--text-2);margin-bottom:16px;">Directional agreement with strict pairwise preferences (20w Human &amp; 118w Held-Out VLM)</div>
+
+          <div class="elo-row">
+            <div class="elo-row-head"><span>Lucas–Kanade Track Retention ↑ (Temporal Coherence)</span><span class="mono" style="color:var(--emerald);">85.2% Human · 93.0% VLM</span></div>
+            <div class="elo-track"><div class="elo-bar" style="width:93%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
+          </div>
+          <div class="elo-row">
+            <div class="elo-row-head"><span>CIEDE2000 Color Accuracy (ΔE₀₀ ↓)</span><span class="mono" style="color:var(--cyan);">81.3% Human · 84.5% VLM</span></div>
+            <div class="elo-track"><div class="elo-bar" style="width:84.5%;background:linear-gradient(90deg,#0ea5e9,#38bdf8);"></div></div>
+          </div>
+          <div class="elo-row">
+            <div class="elo-row-head"><span>Perceptual Similarity (LPIPS ↓)</span><span class="mono" style="color:var(--indigo);">78.4% Human · 82.9% VLM</span></div>
+            <div class="elo-track"><div class="elo-bar" style="width:82.9%;background:linear-gradient(90deg,#6366f1,#818cf8);"></div></div>
+          </div>
+          <div class="elo-row">
+            <div class="elo-row-head"><span>2D Canny Edge F1 ↑ (46.4% excl. Cosmos!)</span><span class="mono" style="color:var(--rose);">66.9% Human · 71.4% VLM</span></div>
+            <div class="elo-track"><div class="elo-bar" style="width:66.9%;background:linear-gradient(90deg,#f43f5e,#fb7185);"></div></div>
+          </div>
+
+          <div class="insight-callout" style="margin-top:14px;border-left-color:var(--amber);background:rgba(245,158,11,0.08);">
+            <strong>Key Takeaway:</strong> Once coarse scene layout is preserved (excluding Cosmos), 2D Edge F1 drops near chance (<code>46.4%</code> human / <code>49.1%</code> VLM), whereas <strong>temporal track retention</strong> and <strong>color fidelity</strong> strongly govern human preference.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Controlled 3D Diagnostics & Counterfactual Motion Audits -->
+    <section id="diagnostics" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Controlled Interventions &amp; Counterfactual 3D Trajectories</div>
+          <h2 class="section-title">Probing Prompts (P0–P6), Shading Edits (R1–R9) &amp; 3D Motion Regimes</h2>
+          <p class="section-desc">
+            Because RenderBench controls the underlying 3D scene, we isolate single upstream factors—stripping textures (R1), clay shading (R2), removing ambient light (R3), or reversing/editing 3D actor &amp; camera trajectories—with 95% source-group bootstrap intervals.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <div class="diag-controls">
+          <div class="layer-group" id="diagStudyTabs">
+            <button class="seg-btn active" data-study="rendering">Rendering Edits (R1–R9 vs. R0)</button>
+            <button class="seg-btn" data-study="prompt">Prompt Strategies (P0–P5 vs. P6)</button>
+          </div>
+          <div class="layer-group" id="diagMetricTabs">
+            <span class="layer-tag">Metric:</span>
+            <button class="seg-btn active" data-dmetric="lpips_gt">ΔLPIPS (Negative = Better)</button>
+            <button class="seg-btn" data-dmetric="edge_f1_gt">ΔEdge F1 (Positive = Better)</button>
+          </div>
+          <div class="layer-group" id="diagModelTabs">
+            <span class="layer-tag">Model:</span>
+            <button class="seg-btn active" data-dmodel="seedance">Seedance 2.5</button>
+            <button class="seg-btn" data-dmodel="h3">MiniMax H3</button>
+            <button class="seg-btn" data-dmodel="wan">Wan2.2-VACE</button>
+            <button class="seg-btn" data-dmodel="cosmos_depth">Cosmos-2.5</button>
+          </div>
+        </div>
+
+        <div id="diagChartWrap" style="width:100%;overflow-x:auto;">
+          <svg id="diagSvg" viewBox="0 0 920 270" style="width:100%;min-width:660px;"></svg>
+        </div>
+
+        <!-- 3 Counterfactual Motion Regimes -->
+        <div class="regime-cards">
+          <div class="regime-card">
+            <span class="regime-badge" style="background:rgba(16,185,129,0.16);color:#6ee7b7;border:1px solid rgba(16,185,129,0.4);">Regime 1 · Rigid Trajectory Locking</span>
+            <h3 style="font-size:1.02rem;margin-bottom:6px;">Wan2.2-VACE · 10 / 10 Scenes</h3>
+            <p style="font-size:0.83rem;color:var(--text-1);">
+              Strictly obeys counterfactual 3D paths across all 10 live scenes (<code>0.27%</code> vs. <code>7.38%</code> original error) and zero-exclusion optical flow checks, prioritizing pixel-aligned control over semantic priors.
+            </p>
+          </div>
+          <div class="regime-card">
+            <span class="regime-badge" style="background:rgba(245,158,11,0.16);color:#fde68a;border:1px solid rgba(245,158,11,0.4);">Regime 2 · Actor Tracking + Dolly Unlock</span>
+            <h3 style="font-size:1.02rem;margin-bottom:6px;">Seedance 2.5 · 8 / 10 &amp; 5 / 5 Actors</h3>
+            <p style="font-size:0.83rem;color:var(--text-1);">
+              Accurately tracks <code>5/5</code> counterfactual 3D actor meshes (<code>0.48%</code> main actor error), while selectively decoupling during rapid forward corridor camera dollies; camera pans induce <code>8.8×</code> higher error via along-pan lag (<code>+31.7%</code>).
+            </p>
+          </div>
+          <div class="regime-card">
+            <span class="regime-badge" style="background:rgba(244,63,94,0.16);color:#fda4af;border:1px solid rgba(244,63,94,0.4);">Regime 3 · Prior-Modulated Following</span>
+            <h3 style="font-size:1.02rem;margin-bottom:6px;">MiniMax H3 · 7 / 10 (8 / 10 Hold-Last)</h3>
+            <p style="font-size:0.83rem;color:var(--text-1);">
+              Invariant to all nine shading edits (R1–R9), yet occasionally overrides counter-directional 3D proxy motion when it conflicts with semantic priors inferred from <code>I^ref</code> (e.g., reversed escalators); leaves <code>~42.2%</code> static pan uncompensated.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Pipeline, Dataset Composition & High-Res Qualitative Plates -->
+    <section id="architecture" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Benchmark Architecture &amp; Visual Plates</div>
+          <h2 class="section-title">Two-Stage Reviewed 3D Reconstruction &amp; Qualitative Gallery</h2>
+          <p class="section-desc">
+            Click any figure below to inspect at full resolution. Switch between the concise four-stage overview (Figure 1) and the expanded seven-stage generation &amp; evaluation diagram (Figure S9).
+          </p>
+        </div>
+        <div class="layer-group" id="pipelineSwitch">
+          <button class="seg-btn active" data-pipe="siggraph">SIGGRAPH Hero Teaser (Fig. 1)</button>
+          <button class="seg-btn" data-pipe="simple">Concise 4-Stage</button>
+          <button class="seg-btn" data-pipe="detailed">Expanded 7-Stage (Fig. S9)</button>
+        </div>
+      </div>
+
+      <div class="fig-card">
+        <div class="fig-img-frame" data-lightbox="assets/figures/siggraph_teaser.webp" id="pipelineFrame">
+          <img id="pipelineImg" src="assets/figures/siggraph_teaser.webp" alt="RenderBench SIGGRAPH Hero Teaser" />
+        </div>
+        <div class="fig-caption" id="pipelineCaption">
+          <strong>Figure 1 · RenderBench Overview:</strong> Coding-agent Blender scripting alternated with two-stage human workbench review (Review 1: static geometry &amp; camera pose ≤ 3.5 px / 20 mm; Review 2: articulated actor motion &amp; contact ≤ 12 px) recovers editable 3D scene packages for multi-engine rendering, attribute/trajectory edits, and six-metric + human/VLM evaluation on held-out <code>t &gt; 0</code> frames.
+        </div>
+      </div>
+
+      <div class="dual-grid" style="margin-top:0;">
+        <div class="fig-card" style="margin-bottom:0;">
+          <div class="fig-img-frame" data-lightbox="assets/figures/dataset_overview.webp">
+            <img src="assets/figures/dataset_overview.webp" alt="RenderBench dataset composition and 99,360 exports" />
+          </div>
+          <div class="fig-caption">
+            <strong>Figure 3 · Dataset Composition &amp; Conditioning Coverage:</strong> 26 editable scene packages across tabletop manipulation (Assembly101, EgoDex), multi-view mall, cinema corridors, humanoid robots, outdoor street, DL3DV-10K, and indoor lounge—yielding 1,242 core and 99,360 augmented A/B/C proxy exports.
+          </div>
+        </div>
+
+        <div class="fig-card" style="margin-bottom:0;">
+          <div class="fig-img-frame" data-lightbox="assets/figures/qualitative_main.webp">
+            <img src="assets/figures/qualitative_main.webp" alt="Qualitative comparison across six scene categories" />
+          </div>
+          <div class="fig-caption">
+            <strong>Figure 6 · Six-Category Qualitative Comparison (Eevee / R0 / P6):</strong> MiniMax H3 and Seedance 2.5 preserve articulated hands, receding doorway geometry, humanoid limbs, and warm palettes across <code>t = 1.5s</code> and <code>3.5s</code>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Citation / BibTeX -->
+    <section id="citation" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Citation</div>
+          <h2 class="section-title">BibTeX</h2>
+        </div>
+      </div>
+
+      <div class="bib-box">
+        <button id="copyBibBtn" class="btn copy-btn" style="padding:7px 14px;font-size:0.8rem;">Copy BibTeX</button>
+        <pre id="bibtexCode"></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- Zoom Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox">
+    <img id="lightboxImg" src="" alt="Full-resolution figure preview" />
+  </div>
+
+  <footer>
+    <div class="container">
+      <p style="font-weight:600;color:var(--text-1);margin-bottom:6px;">RenderBench: Benchmarking Render-to-Real Video Transfer with Editable Scene Reconstructions</p>
+      <p>Third-party source clips (Assembly101, EgoDex, DL3DV-10K) are aligned via deterministic SHA-256 timestamp scripts under their respective upstream licenses.</p>
+    </div>
+  </footer>
+
+  <script src="assets/data/benchmark_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
